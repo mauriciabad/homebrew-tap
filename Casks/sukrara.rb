@@ -2,8 +2,7 @@ cask "sukrara" do
   version "0.11.14"
   sha256 "99f40481e264d5fa85fd0bcbfb6663734508595d4c955f590fbb9a199011f3d1"
 
-  url "https://github.com/mauriciabad/cgm-reading-mac-spike/releases/download/v#{version}/Sukrara-#{version}.dmg",
-      verified: "github.com/mauriciabad/cgm-reading-mac-spike/"
+  url "https://github.com/mauriciabad/cgm-reading-mac-spike/releases/download/v#{version}/Sukrara-#{version}.dmg"
   name "Sukrara"
   desc "Glucose readings from a Libre sensor in the menu bar"
   homepage "https://sukrara.mauri.app/"
