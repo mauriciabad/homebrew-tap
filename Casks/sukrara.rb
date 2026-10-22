@@ -1,6 +1,6 @@
 cask "sukrara" do
-  version "0.11.43"
-  sha256 "e859db19ca1f56ad861f82d7e03c5295a0426441094e8509e0d3adff4ad58227"
+  version "0.11.44"
+  sha256 "0e98a6add4d5b7cd5faf84fd405191517a014f852739b8c1c558e145577f978b"
 
   url "https://github.com/mauriciabad/cgm-reading-mac-spike/releases/download/v#{version}/Sukrara-#{version}.dmg"
   name "Sukrara"
