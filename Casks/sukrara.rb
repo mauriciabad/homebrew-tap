@@ -1,6 +1,6 @@
 cask "sukrara" do
-  version "0.13.0"
-  sha256 "0db5e209fbef18fe28f7565c6574f629797af495980c2e641dde0af07fbcd52d"
+  version "0.14.0"
+  sha256 "5d39e180bc5df155661a8b07148f2ffff8b2ec1c073f45abb81b6c04849fb93f"
 
   url "https://github.com/mauriciabad/sukrara/releases/download/v#{version}/Sukrara-#{version}.dmg"
   name "Sukrara"
@@ -23,6 +23,7 @@ cask "sukrara" do
     end
   end
 
+  auto_updates true
   depends_on arch: :arm64
   depends_on macos: :sequoia
 
