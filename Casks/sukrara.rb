@@ -2,36 +2,47 @@ cask "sukrara" do
   version "0.12.0"
   sha256 "1592416182396f4880f9430ddb658b5f10a6b0d3a6aa884e752bbf2a64d73b40"
 
-  url "https://github.com/mauriciabad/cgm-reading-mac-spike/releases/download/v#{version}/Sukrara-#{version}.dmg"
+  url "https://github.com/mauriciabad/sukrara/releases/download/v#{version}/Sukrara-#{version}.dmg"
   name "Sukrara"
-  desc "Glucose readings from a Libre sensor in the menu bar"
+  desc "Live glucose from a Libre 3 wearer in the menu bar"
   homepage "https://sukrara.mauri.app/"
 
+  # 0.x releases are GitHub prereleases, which the default GitHub strategies skip.
   livecheck do
     url :url
-    strategy :github_latest
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+    strategy :github_releases do |json, regex|
+      json.map do |release|
+        next if release["draft"]
+
+        match = release["tag_name"]&.match(regex)
+        next if match.blank?
+
+        match[1]
+      end
+    end
   end
 
-  depends_on macos: :sonoma
+  depends_on arch: :arm64
+  depends_on macos: :sequoia
 
   app "Sukrara.app"
 
-  uninstall quit: "app.mauri.sukrara.poc"
+  uninstall quit: "app.mauri.sukrara"
 
   zap trash: [
+    "~/Library/Application Support/app.mauri.sukrara",
     "~/Library/Application Support/Sukrara",
+    "~/Library/Caches/app.mauri.sukrara",
     "~/Library/Containers/app.mauri.sukrara.poc.widget",
+    "~/Library/Containers/app.mauri.sukrara.widget",
+    "~/Library/Group Containers/*.app.mauri.sukrara",
     "~/Library/Group Containers/*.app.mauri.sukrara.poc",
+    "~/Library/HTTPStorages/app.mauri.sukrara",
+    "~/Library/Logs/app.mauri.sukrara",
     "~/Library/Logs/Sukrara.log",
+    "~/Library/Preferences/app.mauri.sukrara.plist",
     "~/Library/Preferences/app.mauri.sukrara.poc.plist",
+    "~/Library/Sounds/app.mauri.sukrara.*.caf",
   ]
-
-  caveats <<~EOS
-    Sukrara is not notarized by Apple yet, so macOS blocks the first launch with
-    "Apple could not verify “Sukrara” is free of malware…". Click Done, then open
-    System Settings → Privacy & Security, scroll to Security and click
-    "Open Anyway" next to "“Sukrara” was blocked…", and confirm with your password.
-    This is needed once. Apple's guide:
-      https://support.apple.com/guide/mac-help/mh40616/mac
-  EOS
 end
