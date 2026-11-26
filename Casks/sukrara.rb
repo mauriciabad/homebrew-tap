@@ -1,6 +1,6 @@
 cask "sukrara" do
-  version "0.17.1"
-  sha256 "26da95659369691fb8a162aa104a99bd5994631c706e96df5b867fefa66403af"
+  version "0.18.0"
+  sha256 "1fb977c674c06b5180e6bd9a08c40d2265ca38b573a50b7aa146614a20778d41"
 
   url "https://github.com/mauriciabad/sukrara/releases/download/v#{version}/Sukrara-#{version}.dmg"
   name "Sukrara"
